@@ -1,0 +1,33 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.7.RELEASE' // 전역 변수 설정
+    }
+    repositories {
+        mavenCentral()
+        jcenter() // 라이브러리 업로드를 쉽게 해주는 저장소. 이 곳에 등록하면 자동으로 mavenCentral에도 업로드가 됩니다.
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") // 의존성 라이브러리 버전을 명시하지 않으면 위에 명시한 부트 버전을 따라가게 됩니다.
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+
+group 'com.junyoung.book'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}

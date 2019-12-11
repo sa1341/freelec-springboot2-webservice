@@ -1,12 +1,17 @@
 var main = {
     init : function(){
         var _this = this; /* 실행문맥이란 호출자가 누구냐는 것과 같습니다. */
+
         $('#btn-save').on('click', function(){
             _this.save();
         });
 
         $('#btn-update').on('click', function(){
             _this.update();
+        });
+
+        $('#btn-delete').on('click', function(){
+            _this.delete();
         });
 
     },
@@ -53,11 +58,31 @@ var main = {
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)
+
         }).done(function(){
             alert('글이 수정되었습니다.');
             window.location.href = '/';
         }).fail(function(error) {
             alert(JSON.stringify(error));
+        });
+    },
+
+    delete : function(){
+
+        var id = $('#id').val();
+
+
+        $.ajax({
+
+            type: 'DELETE',
+            url: '/api/v1/posts/' + id,
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8'
+        }).done(function(){
+            alert('게시글이 삭제되었습니다.');
+            window.location.href = '/';
+        }).fail(function(error){
+           alert(JSON.stringify(error));
         });
     }
 

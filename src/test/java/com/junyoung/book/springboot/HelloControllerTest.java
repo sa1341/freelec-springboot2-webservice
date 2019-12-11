@@ -49,7 +49,7 @@ public class HelloControllerTest {
                         .param("name", name) // 값은 String 타입만 허용됩니다. 숫자/날짜 등의 데이터를 등록할 때 문자열로 변경해야만 가능합니다.
                         .param("amount", String.valueOf(amount))
         ).andExpect(status().isOk())
-         .andExpect(jsonPath("$.name", is(name)))
+         .andExpect(jsonPath("$.name", is(name))) // json 응답값을 필드별로 검증할 수 있는 메소드 $을 기준으로 필드명을 명시합니다.
          .andExpect(jsonPath("$.amount", is(amount)));
 
 

@@ -1,5 +1,6 @@
 package com.junyoung.book.springboot.web;
 
+import com.junyoung.book.springboot.config.auth.LoginUser;
 import com.junyoung.book.springboot.config.auth.dto.SessionUser;
 import com.junyoung.book.springboot.service.PostsService;
 import com.junyoung.book.springboot.web.dto.PostsResponseDto;
@@ -18,12 +19,14 @@ public class IndexController {
     private final PostsService postsService;
     private final HttpSession httpSession;
 
+
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model, @LoginUser SessionUser user){
 
         model.addAttribute("posts", postsService.findAllDesc());
 
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        // 아래 코드처럼 세션값이 필요하면 그때마다 직접 세션에서 값을 가져와야하기 때문에  같은 코드가 반복되는 것은 불필요 합니다.
+        /*SessionUser user = (SessionUser) httpSession.getAttributxxe("user");*/
 
         if(user != null){
             model.addAttribute("userName", user.getName());

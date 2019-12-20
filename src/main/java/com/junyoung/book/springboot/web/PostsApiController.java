@@ -22,7 +22,6 @@ public class PostsApiController {
 
     @PostMapping("/api/v1/posts")
     public Long save(@RequestBody PostsSaveRequestDto requestDto){
-
         System.out.println(requestDto.getTitle() +" " + requestDto.getContent() + " " + requestDto.getAuthor());
         return postsService.save(requestDto);
     }
@@ -37,7 +36,9 @@ public class PostsApiController {
     public Long delete(@PathVariable Long id){
         postsService.delete(id);
         return id;
+
     }
+
 
 
 
